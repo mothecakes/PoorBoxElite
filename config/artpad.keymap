@@ -1,0 +1,57 @@
+// ArtPad keymap. This copy in config/ is the one that gets built; it
+// overrides the default in boards/shields/artpad/.
+//
+// Starter bindings for testing with Procreate on iPad; change freely.
+// Binding order matches the matrix transform in artpad.overlay:
+//   row 0: D-pad up, down, left, right
+//   row 1: B1 B2 B3 B4
+//   row 2: B5 B6 B7
+//   row 3: knob click, dial click, scroll click
+// sensor-bindings order matches the sensors node: knob, dial, scroll.
+// For &inc_dec_kp the first key is clockwise, the second counter-clockwise.
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define BASE 0
+#define SYS  1
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "Base";
+            bindings = <
+                &kp UP       &kp DOWN         &kp LEFT  &kp RIGHT
+                &kp LG(Z)    &kp LG(LS(Z))    &kp B     &kp E
+                &kp S        &kp LSHFT        &mo SYS
+                &kp ESC      &kp SPACE        &kp RET
+            >;
+            sensor-bindings = <
+                &inc_dec_kp RBKT LBKT              // knob: brush size bigger / smaller
+                &inc_dec_kp LG(LS(Z)) LG(Z)        // dial: redo / undo
+                &inc_dec_kp LG(EQUAL) LG(MINUS)    // scroll: zoom in / out
+            >;
+        };
+
+        // Hold B7 to reach this layer: Bluetooth profiles, USB/BLE toggle,
+        // and the bootloader (so you don't need to short RST to GND to flash).
+        sys_layer {
+            display-name = "System";
+            bindings = <
+                &bt BT_SEL 0   &bt BT_SEL 1     &bt BT_PRV   &bt BT_NXT
+                &bt BT_CLR     &out OUT_TOG     &trans       &bootloader
+                &trans         &trans           &trans
+                &trans         &trans           &sys_reset
+            >;
+            sensor-bindings = <
+                &inc_dec_kp RBKT LBKT
+                &inc_dec_kp LG(LS(Z)) LG(Z)
+                &inc_dec_kp LG(EQUAL) LG(MINUS)
+            >;
+        };
+    };
+};

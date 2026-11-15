@@ -1,0 +1,33 @@
+// Physical layout, used by ZMK Studio to draw the keys.
+// Positions are placeholders in a grid that mirrors the matrix; update the
+// x/y values once the enclosure layout is decided. Units are 1/100 of a key.
+// There must be exactly one entry per key in the matrix transform (14).
+// See https://zmk.dev/docs/development/hardware-integration/physical-layouts
+
+#include <physical_layouts.dtsi>
+
+/ {
+    default_layout: default_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        transform = <&default_transform>;
+        kscan = <&kscan>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0    0       0     0     0>  // up
+            , <&key_physical_attrs 100 100  100    0       0     0     0>  // down
+            , <&key_physical_attrs 100 100  200    0       0     0     0>  // left
+            , <&key_physical_attrs 100 100  300    0       0     0     0>  // right
+            , <&key_physical_attrs 100 100    0  100       0     0     0>  // B1
+            , <&key_physical_attrs 100 100  100  100       0     0     0>  // B2
+            , <&key_physical_attrs 100 100  200  100       0     0     0>  // B3
+            , <&key_physical_attrs 100 100  300  100       0     0     0>  // B4
+            , <&key_physical_attrs 100 100    0  200       0     0     0>  // B5
+            , <&key_physical_attrs 100 100  100  200       0     0     0>  // B6
+            , <&key_physical_attrs 100 100  200  200       0     0     0>  // B7
+            , <&key_physical_attrs 100 100    0  300       0     0     0>  // knob click
+            , <&key_physical_attrs 100 100  100  300       0     0     0>  // dial click
+            , <&key_physical_attrs 100 100  200  300       0     0     0>  // scroll click
+            ;
+    };
+};

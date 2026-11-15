@@ -1,0 +1,2 @@
+config SHIELD_ARTPAD
+    def_bool $(shields_list_contains,artpad)

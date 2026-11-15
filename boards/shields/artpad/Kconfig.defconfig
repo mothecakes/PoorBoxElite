@@ -1,0 +1,6 @@
+if SHIELD_ARTPAD
+
+config ZMK_KEYBOARD_NAME
+    default "ArtPad"
+
+endif # SHIELD_ARTPAD
